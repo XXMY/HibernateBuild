@@ -10,7 +10,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="connection.url" >
-			jdbc:mysql://127.0.0.1:3306/deals?useUnicode=true&amp;characterEncoding=utf8
+			jdbc:mysql://127.0.0.1:3306/hibernate?useUnicode=true&amp;characterEncoding=utf8
 		</property>
 		<property name="connection.username" >root</property>
 		<property name="connection.password">admin</property>
@@ -18,6 +18,8 @@
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="c3p0.timeout">10</property>
-		<mapping class="cfw.hibernate.beans.Message"/>
+		<mapping class="cfw.hibernate.beans.Person"/>
+		<mapping class="cfw.hibernate.beans.Ranking"/>
+		<mapping class="cfw.hibernate.beans.Skill"/>
 	</session-factory>
 </hibernate-configuration>
