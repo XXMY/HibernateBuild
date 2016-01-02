@@ -1,13 +1,11 @@
 package cfw.hibernate.dao;
 
-import org.hibernate.Session;
+import org.hibernate.Session; 
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-import org.junit.After;
-import org.junit.Before;
 
 /**
  * @author Fangwei_Cai
@@ -15,16 +13,16 @@ import org.junit.Before;
  */
 public abstract class AbstractDao<T> implements DaoInterface<T>{
 
-	private static Configuration configuration;
-	private static ServiceRegistryBuilder srBuilder;
-	private static ServiceRegistry serviceRegistry;
+	protected static Configuration configuration;
+	protected static ServiceRegistryBuilder srBuilder;
+	protected static ServiceRegistry serviceRegistry;
 	
 	// Keep in the memory and not close manually. 
-	private static SessionFactory sessionFactory; 
+	protected static SessionFactory sessionFactory; 
 	
 	static{
 		configuration = new Configuration().configure("hibernate.config.xml");
-		srBuilder = new ServiceRegistryBuilder(); 
+		srBuilder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());
 		serviceRegistry = srBuilder.buildServiceRegistry();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}

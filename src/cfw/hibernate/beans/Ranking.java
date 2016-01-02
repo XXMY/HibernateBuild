@@ -1,19 +1,43 @@
 package cfw.hibernate.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author Fangwei_Cai
  * @time since 2015年12月6日 上午11:02:09
  */
+//@Entity
 public class Ranking {
+	
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	//@Column
 	private Person subject;
 	
+	//@Column
 	private Person observer;
 	
+	//@Column
 	private Skill skill;
 	
+	@Column
 	private Integer rank;
 	
 	public Ranking(){}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Person getSubject() {
 		return subject;
@@ -49,10 +73,9 @@ public class Ranking {
 
 	@Override
 	public String toString() {
-		return "Ranking [subject=" + subject + ", observer=" + observer
-				+ ", skill=" + skill + ", rank=" + rank + "]";
+		return "Ranking [id=" + id + ", subject=" + subject + ", observer="
+				+ observer + ", skill=" + skill + ", rank=" + rank + "]";
 	}
-	
-	
+
 	
 }

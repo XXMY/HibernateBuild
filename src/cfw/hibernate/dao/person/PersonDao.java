@@ -13,7 +13,7 @@ public class PersonDao extends AbstractDao<Person>{
 	
 	@Override
 	public Person findUniqueBy(Long id) {
-		String queryString = "from person p where p.id = :id";
+		String queryString = "from Person p where p.id = :id";
 		Query query = this.session.createQuery(queryString);
 		query.setParameter("id", id);
 		
@@ -23,7 +23,7 @@ public class PersonDao extends AbstractDao<Person>{
 
 	@Override
 	public Person findUniqueBy(String name) {
-		String queryString = "from person p where p.name = :name";
+		String queryString = "from Person p where p.name = :name";
 		Query query = this.session.createQuery(queryString);
 		query.setParameter("name", name);
 		
@@ -37,16 +37,22 @@ public class PersonDao extends AbstractDao<Person>{
 		this.session.save(person);
 		
 	}
+	
+	@Override
+	public void merge(Person person){
+		this.session.merge(person);
+	}
 
 	@Override
 	public void beforeOperation() {
-		
+		this.session = sessionFactory.openSession();
+		this.transaction = this.session.beginTransaction();
 	}
 
 	@Override
 	public void afterOperation() {
-		// TODO Auto-generated method stub
-		
+		this.transaction.commit();
+		this.session.close();
 	}
 
 }

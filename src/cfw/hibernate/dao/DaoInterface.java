@@ -11,4 +11,6 @@ public interface DaoInterface<T> {
 	
 	void save(T t);
 	
+	void merge(T t);
+	
 }
